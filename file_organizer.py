@@ -2,6 +2,7 @@ import os
 import shutil
 
 path = input("Input folder destination: ") 
+
 items = os.listdir(path)
 
 folders = {
@@ -41,7 +42,17 @@ for folder in folders:
     os.makedirs(full_folder, exist_ok=True)
     for file in items:
         full_path = os.path.join(path, file)
+        duplicate = os.path.join(full_folder, file)
         if os.path.isfile(full_path):
             name,ext = os.path.splitext(file)
+            if os.path.exists(duplicate):
+                while True:
+                    counter = 0
+                    counter + 1
+                    new_dupllicate = name + "(" + str(counter) + ")" + ext
+                    new_path = os.path.join(full_folder, new_dupllicate)
+                    os.rename(full_path, new_path)
+                    break
+
             if ext == (folder):
                 shutil.move(full_path,full_folder)
